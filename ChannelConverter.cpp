@@ -182,7 +182,7 @@ int main(int argc, const char * argv[]){
             Vec3b fromXYZ = fromImage.at<Vec3b>(i, j);
             Vec3b toXYZ(0, 0, 0);
             if(fromOption == 'h'){
-                fromXYZ[0] = (unsigned char)(fromXYZ[0] * (255/180));
+                fromXYZ[0] = (unsigned char)(fromXYZ[0] * (255/180.0));
             }
             switch (XshouldBeFrom) {
                 case 'x': toXYZ[0] = fromXYZ[0]; break;
@@ -209,7 +209,7 @@ int main(int argc, const char * argv[]){
                 default: break;
             }
             if(toOption == 'h'){
-                fromXYZ[0] = (unsigned char)(toXYZ[0] * (180/255));
+                fromXYZ[0] = (unsigned char)(toXYZ[0] * (180/255.0));
             }
             result.at<Vec3b>(i, j) = toXYZ;
         }

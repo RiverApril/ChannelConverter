@@ -134,11 +134,11 @@ int main(int argc, const char * argv[]){
     
     cout << "Loaded Image: " << imagePath << endl;
     
-    imshow("Input", inputImage);
+    //imshow("Input", inputImage);
     
-    waitKey(10);
+    //waitKey(10);
     
-    destroyWindow("Input");
+    //destroyWindow("Input");
     
     char fromOption = rgbOrHsv("From RGB or HSV? (r,h)");
     char toOption = rgbOrHsv("To RGB or HSV? (r,h)");
@@ -156,7 +156,7 @@ int main(int argc, const char * argv[]){
         toStr = "HSV";
         cvtColor(inputImage, fromImage, COLOR_BGR2HSV);
     }
-    
+
     if(toOption == 'r'){
         toStr = "RGB";
     }else{
@@ -224,5 +224,6 @@ int main(int argc, const char * argv[]){
     }
     
     imwrite("converted.png", outputImage);
+
     
 }

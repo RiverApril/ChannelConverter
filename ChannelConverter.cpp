@@ -143,28 +143,34 @@ int main(int argc, const char * argv[]){
     char fromOption = rgbOrHsv("From RGB or HSV? (r,h)");
     char toOption = rgbOrHsv("To RGB or HSV? (r,h)");
     
-    char fromToX, fromToY, fromToZ;
+    char XshouldBeFrom, YshouldBeFrom, ZshouldBeFrom;
     
-    string fromStr;
+    string toStr;
     
     Mat fromImage;
     
     if(fromOption == 'r'){
-        fromStr = "RGB";
+        toStr = "RGB";
         cvtColor(inputImage, fromImage, COLOR_BGR2RGB);
     }else{
-        fromStr = "HSV";
+        toStr = "HSV";
         cvtColor(inputImage, fromImage, COLOR_BGR2HSV);
     }
     
     if(toOption == 'r'){
-        fromToX = chooseRGBN("From "+fromStr.substr(0,1)+" to (r,g,b,0,1)");
-        fromToY = chooseRGBN("From "+fromStr.substr(1,1)+" to (r,g,b,0,1)");
-        fromToZ = chooseRGBN("From "+fromStr.substr(2,1)+" to (r,g,b,0,1)");
+        toStr = "RGB";
     }else{
-        fromToX = chooseHSVN("From "+fromStr.substr(0,1)+" to (h,s,v,0,1)");
-        fromToY = chooseHSVN("From "+fromStr.substr(1,1)+" to (h,s,v,0,1)");
-        fromToZ = chooseHSVN("From "+fromStr.substr(2,1)+" to (h,s,v,0,1)");
+        toStr = "HSV";
+    }
+    
+    if(fromOption == 'r'){
+        XshouldBeFrom = chooseRGBN(toStr.substr(0,1)+" from (r,g,b,0,1)");
+        YshouldBeFrom = chooseRGBN(toStr.substr(1,1)+" from (r,g,b,0,1)");
+        ZshouldBeFrom = chooseRGBN(toStr.substr(2,1)+" from (r,g,b,0,1)");
+    }else{
+        XshouldBeFrom = chooseHSVN(toStr.substr(0,1)+" from (h,s,v,0,1)");
+        YshouldBeFrom = chooseHSVN(toStr.substr(1,1)+" from (h,s,v,0,1)");
+        ZshouldBeFrom = chooseHSVN(toStr.substr(2,1)+" from (h,s,v,0,1)");
     }
     
     cout << "Processing..." << endl;
@@ -178,7 +184,7 @@ int main(int argc, const char * argv[]){
             if(fromOption == 'h'){
                 fromXYZ[0] = (unsigned char)(fromXYZ[0] * (255/180));
             }
-            switch (fromToX) {
+            switch (XshouldBeFrom) {
                 case 'x': toXYZ[0] = fromXYZ[0]; break;
                 case 'y': toXYZ[0] = fromXYZ[1]; break;
                 case 'z': toXYZ[0] = fromXYZ[2]; break;
@@ -186,7 +192,7 @@ int main(int argc, const char * argv[]){
                 case '1': toXYZ[0] = 255; break;
                 default: break;
             }
-            switch (fromToY) {
+            switch (YshouldBeFrom) {
                 case 'x': toXYZ[1] = fromXYZ[0]; break;
                 case 'y': toXYZ[1] = fromXYZ[1]; break;
                 case 'z': toXYZ[1] = fromXYZ[2]; break;
@@ -194,7 +200,7 @@ int main(int argc, const char * argv[]){
                 case '1': toXYZ[1] = 255; break;
                 default: break;
             }
-            switch (fromToZ) {
+            switch (ZshouldBeFrom) {
                 case 'x': toXYZ[2] = fromXYZ[0]; break;
                 case 'y': toXYZ[2] = fromXYZ[1]; break;
                 case 'z': toXYZ[2] = fromXYZ[2]; break;

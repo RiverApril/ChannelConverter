@@ -43,17 +43,14 @@ char chooseRGBN(string prompt){
         cin >> option;
         switch(option){
             case 'r':
-            case 'R':
                 option = 'x';
                 choosing = false;
                 break;
             case 'g':
-            case 'G':
                 option = 'y';
                 choosing = false;
                 break;
             case 'b':
-            case 'B':
                 option = 'z';
                 choosing = false;
                 break;
@@ -63,6 +60,22 @@ char chooseRGBN(string prompt){
                 break;
             case '1':
                 option = '1';
+                choosing = false;
+                break;
+            case '-':
+                option = '-';
+                choosing = false;
+                break;
+            case 'R':
+                option = 'X';
+                choosing = false;
+                break;
+            case 'G':
+                option = 'Y';
+                choosing = false;
+                break;
+            case 'B':
+                option = 'Z';
                 choosing = false;
                 break;
             default:
@@ -82,17 +95,14 @@ char chooseHSVN(string prompt){
         cin >> option;
         switch(option){
             case 'h':
-            case 'H':
                 option = 'x';
                 choosing = false;
                 break;
             case 's':
-            case 'S':
                 option = 'y';
                 choosing = false;
                 break;
             case 'v':
-            case 'V':
                 option = 'z';
                 choosing = false;
                 break;
@@ -102,6 +112,22 @@ char chooseHSVN(string prompt){
                 break;
             case '1':
                 option = '1';
+                choosing = false;
+                break;
+            case '-':
+                option = '-';
+                choosing = false;
+                break;
+            case 'H':
+                option = 'X';
+                choosing = false;
+                break;
+            case 'S':
+                option = 'Y';
+                choosing = false;
+                break;
+            case 'V':
+                option = 'Z';
                 choosing = false;
                 break;
             default:
@@ -164,13 +190,13 @@ int main(int argc, const char * argv[]){
     }
     
     if(fromOption == 'r'){
-        XshouldBeFrom = chooseRGBN(toStr.substr(0,1)+" from (r,g,b,0,1)");
-        YshouldBeFrom = chooseRGBN(toStr.substr(1,1)+" from (r,g,b,0,1)");
-        ZshouldBeFrom = chooseRGBN(toStr.substr(2,1)+" from (r,g,b,0,1)");
+        XshouldBeFrom = chooseRGBN(toStr.substr(0,1)+" from (r,g,b,0,1) caps: inverse");
+        YshouldBeFrom = chooseRGBN(toStr.substr(1,1)+" from (r,g,b,0,1) caps: inverse");
+        ZshouldBeFrom = chooseRGBN(toStr.substr(2,1)+" from (r,g,b,0,1) caps: inverse");
     }else{
-        XshouldBeFrom = chooseHSVN(toStr.substr(0,1)+" from (h,s,v,0,1)");
-        YshouldBeFrom = chooseHSVN(toStr.substr(1,1)+" from (h,s,v,0,1)");
-        ZshouldBeFrom = chooseHSVN(toStr.substr(2,1)+" from (h,s,v,0,1)");
+        XshouldBeFrom = chooseHSVN(toStr.substr(0,1)+" from (h,s,v,0,1) caps: inverse");
+        YshouldBeFrom = chooseHSVN(toStr.substr(1,1)+" from (h,s,v,0,1) caps: inverse");
+        ZshouldBeFrom = chooseHSVN(toStr.substr(2,1)+" from (h,s,v,0,1) caps: inverse");
     }
     
     cout << "Processing..." << endl;
@@ -188,6 +214,9 @@ int main(int argc, const char * argv[]){
                 case 'x': toXYZ[0] = fromXYZ[0]; break;
                 case 'y': toXYZ[0] = fromXYZ[1]; break;
                 case 'z': toXYZ[0] = fromXYZ[2]; break;
+                case 'X': toXYZ[0] = 255-fromXYZ[0]; break;
+                case 'Y': toXYZ[0] = 255-fromXYZ[1]; break;
+                case 'Z': toXYZ[0] = 255-fromXYZ[2]; break;
                 case '0': toXYZ[0] = 0; break;
                 case '1': toXYZ[0] = 255; break;
                 default: break;
@@ -196,6 +225,9 @@ int main(int argc, const char * argv[]){
                 case 'x': toXYZ[1] = fromXYZ[0]; break;
                 case 'y': toXYZ[1] = fromXYZ[1]; break;
                 case 'z': toXYZ[1] = fromXYZ[2]; break;
+                case 'X': toXYZ[1] = 255-fromXYZ[0]; break;
+                case 'Y': toXYZ[1] = 255-fromXYZ[1]; break;
+                case 'Z': toXYZ[1] = 255-fromXYZ[2]; break;
                 case '0': toXYZ[1] = 0; break;
                 case '1': toXYZ[1] = 255; break;
                 default: break;
@@ -204,6 +236,9 @@ int main(int argc, const char * argv[]){
                 case 'x': toXYZ[2] = fromXYZ[0]; break;
                 case 'y': toXYZ[2] = fromXYZ[1]; break;
                 case 'z': toXYZ[2] = fromXYZ[2]; break;
+                case 'X': toXYZ[2] = 255-fromXYZ[0]; break;
+                case 'Y': toXYZ[2] = 255-fromXYZ[1]; break;
+                case 'Z': toXYZ[2] = 255-fromXYZ[2]; break;
                 case '0': toXYZ[2] = 0; break;
                 case '1': toXYZ[2] = 255; break;
                 default: break;

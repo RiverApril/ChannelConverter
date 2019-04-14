@@ -7,4 +7,6 @@ install_manifest.txt
 
 ChannelConverter
 
+.DS_Store
+
 *.png
